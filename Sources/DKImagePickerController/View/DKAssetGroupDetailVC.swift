@@ -456,8 +456,14 @@ open class DKAssetGroupDetailVC: UIViewController,
         var targetContentOffset = collectionView.contentOffset
         targetContentOffset.y += offsetY
 
+        var safeAreaBottomInset: CGFloat = 0;
+
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = collectionView.safeAreaInsets.bottom
+        }
+
         targetContentOffset.y = min(max(targetContentOffset.y, collectionView.contentInset.top),
-                                    collectionView.contentSize.height - collectionView.bounds.height)
+                                    max(collectionView.contentSize.height - (collectionView.bounds.height - safeAreaBottomInset), 0))
 
         collectionView.contentOffset = targetContentOffset
         
@@ -617,6 +623,12 @@ open class DKAssetGroupDetailVC: UIViewController,
             assetCell.isSelected = false
             self.collectionView?.deselectItem(at: indexPath, animated: false)
         }
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let assetCell: DKAssetGroupDetailBaseCell? = cell as? DKAssetGroupDetailBaseCell
+
+        assetCell?.asset?.cancelRequests()
     }
 
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {

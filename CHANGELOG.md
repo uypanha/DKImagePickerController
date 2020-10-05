@@ -1,5 +1,18 @@
 # Change Log
 
+## [4.3.2](https://github.com/zhangao0086/DKImagePickerController/tree/4.3.2) (2020-06-03)
+
+- Adds compression quality parameter to export configuration.
+
+## [4.3.1](https://github.com/zhangao0086/DKImagePickerController/tree/4.3.1) (2020-05-16)
+
+- Fixed an issue that caused Carthage was broken.
+- DKImageExtensionController can control whether to disable an specfic extension. 
+
+## [4.3.0](https://github.com/zhangao0086/DKImagePickerController/tree/4.3.0) (2020-04-27)
+
+- Drop support for iOS 8
+
 ## [4.2.1](https://github.com/zhangao0086/DKImagePickerController/tree/4.2.1) (2019-11-08)
 
 - Fixed #632
